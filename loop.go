@@ -4,8 +4,8 @@ import "time"
 
 func main() {
   start := time.Now()
-  sum := 0
-  for i := 0; i< 10000000; i++ {
+  var sum, i int64 = 0, 0
+  for i = 0; i< 10000000; i++ {
     sum += i
   }
   end := time.Now()
