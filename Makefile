@@ -1,20 +1,21 @@
 RUN ?= loop
-make: go c lua rust python bash
+make: header go c luajit lua rust python2 python3 bash
 
-deps:
-	@for lang in go gcc lua5.3 rustc python3 bash; do\
-	  which $${lang} >/dev/null || echo "Missing $${lang}";\
-	done
-
+header:
+	@echo "Lang\t\tElapsed Time\tSum\t\tVersion"
 bash:
-	@bash ${RUN}.sh
+	@$(shell which bash) ${RUN}.sh || exit 0
 c:
-	@gcc ${RUN}.c && ./a.out; rm a.out
+	@$(shell which gcc) ${RUN}.c && ./a.out; rm a.out || exit 0
 go:
-	@go run ${RUN}.go
+	@$(shell which go) run ${RUN}.go || exit 0
 lua:
-	@lua5.3 ${RUN}.lua
-python:
-	@python3 ${RUN}.py
+	@$(shell which lua) ${RUN}.lua || exit 0
+luajit:
+	@$(shell which luajit) ${RUN}.luajit || exit 0
+python2:
+	@$(shell which python2) ${RUN}.py || exit 0
+python3:
+	@$(shell which python3) ${RUN}.py3 || exit 0
 rust:
-	@rustc ${RUN}.rs && ./${RUN}; rm ${RUN}
+	@$(shell which rustc) ${RUN}.rs && ./${RUN}; rm ${RUN} || exit 0
