@@ -15,6 +15,6 @@ int main() {
 
   gettimeofday(&end, NULL);
   double secs = (double)(end.tv_usec - start.tv_usec) / 1000000 + (double)(end.tv_sec - start.tv_sec);
-  printf("C:\t%f\t%llu\n", secs, sum);
+  printf("C:\t\t%f\t%llu\n", secs, sum);
   return 0;
 }

@@ -1,6 +1,7 @@
 package main
 import "fmt"
 import "time"
+import "runtime"
 
 func main() {
   start := time.Now()
@@ -10,5 +11,5 @@ func main() {
   }
   end := time.Now()
   elapsed := (end.Sub(start)).Seconds()
-  fmt.Printf("Go:\t%.6f\t%v\n", elapsed, sum)
+  fmt.Printf("Go:\t\t%.6f\t%v\t%s\n", elapsed, sum, runtime.Version())
 }
